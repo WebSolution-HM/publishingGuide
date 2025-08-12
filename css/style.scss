@@ -111,16 +111,22 @@ $headerH: calc(70px + 40px + 30px);
 //main(메인)
 main{
     .main-wrap{
-        width: calc(100% - 250px);
-        padding: 100px 0;
+        // width: calc(100% - 250px);
+        height: 100%;
+        margin-right: 180px;
+        // padding: 50px 0;
         .guide-li-wrap{
+            @include position($p:relative);
             width: 80%;
+            height: 100%;
             margin-left: auto;
             margin-right: 0;
             .guide-card{
-                @include position($p:relative);
-                margin-left: auto;
-                margin-right: auto;
+                @include position();
+                max-width: 700px;
+                width: 100%;
+                // margin-left: auto;
+                // margin-right: auto;
                 .title--guide{
                     @include position($l:0, $r:0, $t:-20px);
                     width: fit-content;
@@ -132,10 +138,11 @@ main{
                     background-color: $primary-orange;
                 }
                 .sample-code{
-                    padding: 28px;
+                    padding: 20px 50px;
                     width: 100%;
                     background-color: $black;
-                    box-shadow: 6px 6px 0 0 $primary-orange;
+                    box-shadow: 12px 12px 0 0 $primary-orange;
+                    border-radius: 60px;
                     .description{
                         margin-top: 12px;
                         padding: 0 20px;
@@ -154,41 +161,32 @@ main{
                         background-color: $primary-blue;
                     }
                     .sample-code{
-                        box-shadow: 6px 6px 0 0 $primary-blue;
-                    }
-                }
-
-                //카드별로 스타일
-                &:nth-child(1){
-                    width: 700px;
-                    margin-left: 20%;
-                    margin-right: auto;
-                    .sample-code{
-                        padding: 20px 50px;
-                        border-radius: 60px;
-                    }
-                }
-                &:nth-child(2){
-                    width: 700px;
-                    margin-left: 40%;
-                    margin-right: auto;
-                    .sample-code{
-                        padding: 20px 50px;
-                        border-radius: 60px;
-                    }
-                }
-                &:nth-child(3){
-                    width: 700px;
-                    margin-left: 30%;
-                    margin-right: auto;
-                    .sample-code{
-                        padding: 20px 50px;
-                        border-radius: 60px;
+                        box-shadow: 12px 12px 0 0 $primary-blue;
                     }
                 }
             }
-            
         }
     }
 }
 
+@media (max-width: 1600px){
+    main .main-wrap .guide-li-wrap{
+        width: 100%;
+        .guide-card{
+            max-width: 60%;
+        }
+    }
+}
+@media (max-width: 1050px){
+    main .main-wrap .guide-li-wrap .guide-card{
+        max-width: 70%;
+        .sample-code{
+            border-radius: 40px;
+        }
+    }
+}
+@media (max-width: 750px){
+    main .main-wrap .guide-li-wrap .guide-card{
+        max-width: 90%;
+    }
+}

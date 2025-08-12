@@ -335,18 +335,20 @@ nav .nav-wrap li button.active {
   border-radius: 4px;
 }
 main .main-wrap {
-  width: calc(100% - 250px);
-  padding: 100px 0;
+  height: 100%;
+  margin-right: 180px;
 }
 main .main-wrap .guide-li-wrap {
+  position: relative;
   width: 80%;
+  height: 100%;
   margin-left: auto;
   margin-right: 0;
 }
 main .main-wrap .guide-li-wrap .guide-card {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  max-width: 700px;
+  width: 100%;
 }
 main .main-wrap .guide-li-wrap .guide-card .title--guide {
   position: absolute;
@@ -362,10 +364,11 @@ main .main-wrap .guide-li-wrap .guide-card .title--guide {
   background-color: #FF5900;
 }
 main .main-wrap .guide-li-wrap .guide-card .sample-code {
-  padding: 28px;
+  padding: 20px 50px;
   width: 100%;
   background-color: #1F1F1F;
-  box-shadow: 6px 6px 0 0 #FF5900;
+  box-shadow: 12px 12px 0 0 #FF5900;
+  border-radius: 60px;
 }
 main .main-wrap .guide-li-wrap .guide-card .sample-code .description {
   margin-top: 12px;
@@ -379,32 +382,27 @@ main .main-wrap .guide-li-wrap .guide-card:nth-child(odd) .title--guide {
   background-color: #006FFD;
 }
 main .main-wrap .guide-li-wrap .guide-card:nth-child(odd) .sample-code {
-  box-shadow: 6px 6px 0 0 #006FFD;
+  box-shadow: 12px 12px 0 0 #006FFD;
 }
-main .main-wrap .guide-li-wrap .guide-card:nth-child(1) {
-  width: 700px;
-  margin-left: 20%;
-  margin-right: auto;
+
+@media (max-width: 1600px) {
+  main .main-wrap .guide-li-wrap {
+    width: 100%;
+  }
+  main .main-wrap .guide-li-wrap .guide-card {
+    max-width: 60%;
+  }
 }
-main .main-wrap .guide-li-wrap .guide-card:nth-child(1) .sample-code {
-  padding: 20px 50px;
-  border-radius: 60px;
+@media (max-width: 1050px) {
+  main .main-wrap .guide-li-wrap .guide-card {
+    max-width: 70%;
+  }
+  main .main-wrap .guide-li-wrap .guide-card .sample-code {
+    border-radius: 40px;
+  }
 }
-main .main-wrap .guide-li-wrap .guide-card:nth-child(2) {
-  width: 700px;
-  margin-left: 40%;
-  margin-right: auto;
-}
-main .main-wrap .guide-li-wrap .guide-card:nth-child(2) .sample-code {
-  padding: 20px 50px;
-  border-radius: 60px;
-}
-main .main-wrap .guide-li-wrap .guide-card:nth-child(3) {
-  width: 700px;
-  margin-left: 30%;
-  margin-right: auto;
-}
-main .main-wrap .guide-li-wrap .guide-card:nth-child(3) .sample-code {
-  padding: 20px 50px;
-  border-radius: 60px;
+@media (max-width: 750px) {
+  main .main-wrap .guide-li-wrap .guide-card {
+    max-width: 90%;
+  }
 }/*# sourceMappingURL=style.css.map */
