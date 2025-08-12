@@ -1,0 +1,194 @@
+@use "common/color" as *;
+@use "common/reset" as *;
+@use "common/size" as *;
+@use "common/font" as *;
+@use "mixin/utils" as *;
+
+/*
+#header(헤더)
+#nav(네비게이션)
+#scroll indicator(스크롤 인디케이터)
+#탑버튼
+#main(메인)
+*/
+
+//header(헤더)
+header{
+    height: 70px;
+    color: $primary-orange;
+    .header-wrap{
+        @include flex-layout($jc: space-between, $ai: center);
+        height: 100%;
+        padding: 30px;
+        font-size: 14px;
+        border-bottom: 1px solid $primary-orange;
+        .left{
+            text-align: left;
+        }
+        .title--site{
+            font-family: "LOTTERIACHAB";
+            font-weight: 400;
+            font-size: 40px;
+        }
+        .right{
+            text-align: right;
+        }
+    }
+}
+
+//nav(네비게이션)
+nav{
+    height: 40px;
+    color: $primary-orange;
+    border-bottom: 1px solid $primary-orange;
+    .nav-wrap{
+        @include position($p: relative);
+        @include flex-layout($ai: center, $jc: center);
+        height: 100%;
+        width: fit-content;
+        margin: auto;
+
+        &::after{
+            content: "";
+            @include position($b:-8px, $l:10px);
+            width: calc(100% / 2 - 10px);
+            height: 16px;
+            background-color: $primary-blue;
+            border-radius: 16px;
+        }
+        li{
+            button{
+                display: block;
+                height: 100%;
+                padding: 0 10px;
+                &.active{
+                    color: $primary-blue;
+                    font-weight:800;
+                }
+            }
+        }
+    }
+}
+
+//scroll indicator(스크롤 인디케이터)
+$headerH: calc(70px + 40px + 30px);
+.scroll-indicator{
+    @include position($p: fixed, $r: 30px, $t:$headerH);
+    z-index: 10;
+    height: calc(100% - $headerH - 30px);
+    text-align: right;
+    .scroll-indicator-wrap{
+        @include flex-layout($fd: column, $ai: end, $jc: space-between);
+        height: 100%;
+        .indicator--menu{
+            li{
+                button{
+                    padding: 6px 14px;
+                    border-radius: 40px;
+                    &.active{
+                        font-size: 24px;
+                        font-weight: 600;
+                        color: $ivory;
+                        background-color: $primary-blue;
+                    }
+                }
+            }
+        }
+
+        .indicator--line{
+            flex: .95;
+            width: 2px;
+            margin-top: 10px;
+            margin-right: 10px;
+            background-color: $primary-blue;
+            border-radius: 4px;
+        }
+
+        .btn--top{}
+    }
+}
+
+//main(메인)
+main{
+    .main-wrap{
+        width: calc(100% - 250px);
+        padding: 100px 0;
+        .guide-li-wrap{
+            width: 80%;
+            margin-left: auto;
+            margin-right: 0;
+            .guide-card{
+                @include position($p:relative);
+                margin-left: auto;
+                margin-right: auto;
+                .title--guide{
+                    @include position($l:0, $r:0, $t:-20px);
+                    width: fit-content;
+                    margin: auto;
+                    padding: 4px 8px;
+                    font-size: 20px;
+                    color: white;
+                    text-align: center;
+                    background-color: $primary-orange;
+                }
+                .sample-code{
+                    padding: 28px;
+                    width: 100%;
+                    background-color: $black;
+                    box-shadow: 6px 6px 0 0 $primary-orange;
+                    .description{
+                        margin-top: 12px;
+                        padding: 0 20px;
+                        color: white;
+                        li{
+                            &:before{
+                                content: "•";
+                            }
+                        }
+                    }
+                }
+                
+                //홀수번째 파란색 스타일
+                &:nth-child(odd){
+                    .title--guide{
+                        background-color: $primary-blue;
+                    }
+                    .sample-code{
+                        box-shadow: 6px 6px 0 0 $primary-blue;
+                    }
+                }
+
+                //카드별로 스타일
+                &:nth-child(1){
+                    width: 700px;
+                    margin-left: 20%;
+                    margin-right: auto;
+                    .sample-code{
+                        padding: 20px 50px;
+                        border-radius: 60px;
+                    }
+                }
+                &:nth-child(2){
+                    width: 700px;
+                    margin-left: 40%;
+                    margin-right: auto;
+                    .sample-code{
+                        padding: 20px 50px;
+                        border-radius: 60px;
+                    }
+                }
+                &:nth-child(3){
+                    width: 700px;
+                    margin-left: 30%;
+                    margin-right: auto;
+                    .sample-code{
+                        padding: 20px 50px;
+                        border-radius: 60px;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+

@@ -1,0 +1,33 @@
+//flex layout 플렉스 레이아웃
+@mixin flex-layout($d: flex, $ai: flex-start, $jc: flex-start, $fd: row,$fw: nowrap) {
+	display: $d;
+	align-items: $ai;	
+	justify-content: $jc;
+	flex-direction: $fd;
+	flex-wrap: $fw;
+}
+
+//position 포지션
+@mixin position($p: absolute, $t: null, $b: null, $l: null, $r: null) {
+	position: $p;
+	top: $t;
+	bottom: $b;
+	left: $l;
+	right: $r;
+}
+
+//font 설정
+@mixin font( $fw: null, $lh: null, $fz: null, $color: null, $ta: null)  {
+	font-weight: $fw;
+	line-height: $lh;
+	font-size: $fz;
+	color:$color;
+	text-align: $ta;
+}
+
+//말 줄임 text ellipsis
+@mixin ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
