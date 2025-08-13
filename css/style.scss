@@ -118,9 +118,9 @@ main{
         .guide-li-wrap{
             @include position($p:relative);
             width: 80%;
-            height: 100%;
+            // height: 100%;
             margin-left: auto;
-            margin-right: 0;
+
             .guide-card{
                 @include position();
                 max-width: 700px;
@@ -128,17 +128,18 @@ main{
                 // margin-left: auto;
                 // margin-right: auto;
                 .title--guide{
-                    @include position($l:0, $r:0, $t:-20px);
+                    @include position($l:0, $r:0, $t:-1vw);
                     width: fit-content;
                     margin: auto;
                     padding: 4px 8px;
-                    font-size: 20px;
+                    font-size: clamp(16px, 1.3vw, 1.3vw);
                     color: white;
                     text-align: center;
                     background-color: $primary-orange;
                 }
                 .sample-code{
                     padding: 20px 50px;
+                    padding: 2vw;
                     width: 100%;
                     background-color: $black;
                     box-shadow: 12px 12px 0 0 $primary-orange;

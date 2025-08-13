@@ -341,9 +341,7 @@ main .main-wrap {
 main .main-wrap .guide-li-wrap {
   position: relative;
   width: 80%;
-  height: 100%;
   margin-left: auto;
-  margin-right: 0;
 }
 main .main-wrap .guide-li-wrap .guide-card {
   position: absolute;
@@ -352,19 +350,20 @@ main .main-wrap .guide-li-wrap .guide-card {
 }
 main .main-wrap .guide-li-wrap .guide-card .title--guide {
   position: absolute;
-  top: -20px;
+  top: -1vw;
   left: 0;
   right: 0;
   width: fit-content;
   margin: auto;
   padding: 4px 8px;
-  font-size: 20px;
+  font-size: clamp(16px, 1.3vw, 1.3vw);
   color: white;
   text-align: center;
   background-color: #FF5900;
 }
 main .main-wrap .guide-li-wrap .guide-card .sample-code {
   padding: 20px 50px;
+  padding: 2vw;
   width: 100%;
   background-color: #1F1F1F;
   box-shadow: 12px 12px 0 0 #FF5900;
