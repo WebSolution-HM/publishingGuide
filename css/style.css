@@ -305,7 +305,7 @@ nav .nav-wrap li button.active {
   top: 140px;
   right: 30px;
   z-index: 10;
-  height: calc(100% - 140px - 30px);
+  height: calc(100% - 140px - 100px);
   text-align: right;
 }
 .scroll-indicator .scroll-indicator-wrap {
@@ -359,29 +359,24 @@ main .main-wrap .guide-li-wrap .guide-card .title--guide {
   font-size: clamp(16px, 1.3vw, 1.3vw);
   color: white;
   text-align: center;
-  background-color: #FF5900;
+  background-color: #006FFD;
 }
 main .main-wrap .guide-li-wrap .guide-card .sample-code {
   padding: 20px 50px;
   padding: 2vw;
   width: 100%;
   background-color: #1F1F1F;
-  box-shadow: 12px 12px 0 0 #FF5900;
+  box-shadow: 12px 12px 0 0 #006FFD;
   border-radius: 60px;
 }
 main .main-wrap .guide-li-wrap .guide-card .sample-code .description {
   margin-top: 12px;
-  padding: 0 20px;
+  padding: 0 4vw;
   color: white;
+  line-height: 1.5;
 }
 main .main-wrap .guide-li-wrap .guide-card .sample-code .description li:before {
   content: "•";
-}
-main .main-wrap .guide-li-wrap .guide-card:nth-child(odd) .title--guide {
-  background-color: #006FFD;
-}
-main .main-wrap .guide-li-wrap .guide-card:nth-child(odd) .sample-code {
-  box-shadow: 12px 12px 0 0 #006FFD;
 }
 
 @media (max-width: 1600px) {

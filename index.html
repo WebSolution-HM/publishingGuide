@@ -36,7 +36,7 @@
     <!-- scroll indicator(스크롤 인디케이터) 시작 -->
     <aside class="scroll-indicator">
         <div class="scroll-indicator-wrap">
-            <ul class="indicator--menu">
+            <ul class="indicator--menu js-indicator--menu">
                 <li><button class="active" type="button">클래스 네이밍</button></li>
                 <li><button class="" type="button">스타일 순서</button></li>
                 <li><button class="" type="button">스타일 파일</button></li>
@@ -55,7 +55,7 @@
     <main class="js-main">
         <div class="main-wrap">
             <!-- 클래스 네이밍 리스트 시작 -->
-            <ul class="ul--class-naming guide-li-wrap">
+            <ul class="ul--class-naming guide-li-wrap js-guide-li-wrap">
                 <li class="guide-card js-guide-card">
                     <p class="title--guide">소문자 케밥케이스</p>
                     <div class="sample-code">
@@ -85,114 +85,205 @@
             <!-- //클래스 네이밍 리스트 끝 -->
 
             <!-- 스타일 순서 시작 -->
-            <ul class="ul--style-order guide-li-wrap">
+            <ul class="ul--style-order guide-li-wrap js-guide-li-wrap">
                 <li class="guide-card js-guide-card">
-                    <p class="title--guide">소문자 케밥케이스</p>
+                    <p class="title--guide">스타일은 아래와 같은 순서로 작성하기</p>
                     <div class="sample-code">
-                        <img src="./image/css/img-sample1.png" alt="">
-                    </div>
-                </li>
-                <li class="guide-card js-guide-card">
-                    <p class="title--guide">class 네이밍 형식</p>
-                    <div class="sample-code">
-                        <img src="./image/css/img-sample2.png" alt="">
-                        <ul class="description">
-                            <li>.대상{}</li>
-                            <li>.기능--대상/속성{}</li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="guide-card js-guide-card">
-                    <p class="title--guide">스크립트 클래스명 앞에 ‘js-’ 넣기</p>
-                    <div class="sample-code">
-                        <img src="./image/css/img-sample3.png" alt="">
-                        <ul class="description">
-                            <li>스크립트용 클래스에는 스타일을 주지 않음</li>
-                        </ul>
+                        <img src="./image/css/img-sample4.png" alt="">
                     </div>
                 </li>
             </ul>
             <!-- //스타일 순서 끝 -->
 
-            <ul class="ul--style-file guide-li-wrap">
+            <!-- 스타일 파일 시작 -->
+            <ul class="ul--style-file guide-li-wrap js-guide-li-wrap">
                 <li class="guide-card js-guide-card">
-                    <p class="title--guide">소문자 케밥케이스</p>
+                    <p class="title--guide">SCSS파일 최상단에 주석 정리해서 넣기</p>
                     <div class="sample-code">
-                        <img src="./image/css/img-sample1.png" alt="">
+                        <img src="./image/css/img-sample5.png" alt="">
+                        <ul class="description">
+                            <li>해당 구조의 스타일링 찾기 쉽게 하기 위함</li>
+                            <li>주석은 한글/영문 둘 다 넣기</li>
+                            <li>HTML 주석과 일치하면 더 좋음</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="guide-card js-guide-card">
+                    <p class="title--guide">SCSS주석은 // 사용하기</p>
+                    <div class="sample-code">
+                        <img src="./image/css/img-sample6.png" alt="">
+                        <ul class="description">
+                            <li>컴파일시, /**/ 주석은 최상단으로 이동하기 때문에 지양</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="guide-card js-guide-card">
+                    <p class="title--guide">클래스명과 중괄호는 붙여쓰기</p>
+                    <div class="sample-code">
+                        <img src="./image/css/img-sample7.png" alt="">
+                        <ul class="description">
+                            <li>클래스명 검색을 용이하게 하기 위함</li>
+                        </ul>
                     </div>
                 </li>
             </ul>
+            <!-- //스타일 파일 끝 -->
+
+            <!-- mixin 4종 시작 -->
+             <ul class="ul--style-file guide-li-wrap js-guide-li-wrap">
+                <li class="guide-card js-guide-card">
+                    <p class="title--guide">@mixin 4종: flex, position, font, ellipsis</p>
+                    <div class="sample-code">
+                        <img src="./image/css/img-sample8.png" alt="">
+                    </div>
+                </li>
+            </ul>
+            <!-- //mixin 4종 끝 -->
         </div>
     </main>
     <!-- //main(메인) 끝 -->
 
     <script>
+        /*공통변수 모음*/
+        const cardWrap = document.querySelectorAll(".js-guide-li-wrap");
+        const allCards = [];
+        const cardHArr = [];
+        const firstCardTop = [];
+        const indicatorMenu = document.querySelectorAll(".js-indicator--menu button");
+
+
+        /*함수 모음*/
+        //랜덤숫자(최소, 최대)
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
+        };
 
-        //이전 카드 그룹의 마지막 카드 높이 + top + 여백
-        //첫 카드의 시작 top을 이전 카드의 마지막 아래로 두기 위함
+        //이전 ul 그룹의 높이 값
         function prevH(prevGroupCards) {
             const cardLast = prevGroupCards[prevGroupCards.length - 1];
             return cardLast.clientHeight + parseFloat(getComputedStyle(cardLast).top) + 50;
         }
 
-        //main 높이를 구하기 위함
-        const cardHArr = [];
+        //스크롤 인디케이터
+        function initScrollIndicator() {
+            // top 기준으로 정렬(안전)
+            firstCardTop.sort((a, b) => a.top - b.top);
+            window.addEventListener("scroll", () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        //카드들의 left, top 값 설정
-        function setCardPositions(cardEls, isFirstGroup, prevGroupCards) {
-            //left 값 랜덤 적용
+                indicatorMenu.forEach(btn => btn.classList.remove("active"));
+
+                for (let i = 0; i < firstCardTop.length - 1; i++) {
+                    if (scrollTop >= firstCardTop[i].top && scrollTop < firstCardTop[i + 1].top) {
+                        indicatorMenu[firstCardTop[i].index].classList.add("active");
+                    }
+                }
+
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                if (scrollTop+ windowHeight >= documentHeight) {
+                    indicatorMenu.forEach(btn => btn.classList.remove("active"));
+                    indicatorMenu[indicatorMenu.length-1].classList.add("active");
+                } else {
+                    return;
+                }
+            });
+        }
+
+        //메인 높이 값
+        function updateMainHeight(allCards) {
+            let maxBottom = 0;
+            allCards.forEach(card => {
+                const top = parseFloat(card.style.top) || card.offsetTop || 0;
+                const bottom = top + card.offsetHeight;
+                if (bottom > maxBottom) maxBottom = bottom;
+            });
+            document.querySelector("main").style.height = `${maxBottom + 100}px`; // 여유 100px
+        }
+
+        //카드들의 포지션 설정
+        //firstCardTop 배열 설정
+        function setCardPositions(cardEls, isFirstGroup, prevGroupCards, ulIndex) {
+            //left 값
             cardEls.forEach(card => {
-                const randomL = getRandomInt(0, 30);
+                const randomL = getRandomInt(5, 30);
                 card.style.left = `${randomL}vw`;
             });
 
-            //DOM 반영 후 top 값 적용
+            //top 값 
             setTimeout(() => {
                 cardEls.forEach((card, index) => {
-                    if (index === 0) {
-                        if (isFirstGroup) {
-                            // 첫 번째 카드
+                    const prevCardH = card.previousElementSibling ? card.previousElementSibling.clientHeight : 0;
+                    if (index === 0) { 
+                        if (isFirstGroup) { //첫 ui
+                            //첫 번째 카드
                             const randomT = getRandomInt(50, 100);
                             card.style.top = `${randomT}px`;
                             cardHArr.push(randomT);
-                        } else {
-                            // 두 번째 이후 카드
-                            const randomT = getRandomInt(100, 300);
+                        
+                        } else { //첫 ui 이후
+                            //첫 번째 카드
+                            const randomT = getRandomInt(10, 50);
                             const h = prevH(prevGroupCards);
-                            card.style.top = `${randomT + h}px`;
-                            cardHArr.push(randomT);
+                            card.style.top = `${randomT + h + prevCardH}px`;
+                            cardHArr.push(randomT + prevCardH);
                         }
+
+                        //배열 설정
+                        firstCardTop.push({
+                            index: ulIndex,
+                            top: parseFloat(card.style.top) - 200 || card.offsetTop - 200
+                        });
                     } else {
                         // 이전 카드 기준으로 top 계산
                         const prevCard = cardEls[index - 1];
                         const prevTop = parseFloat(prevCard.style.top);
-                        const prevHeight = prevCard.clientHeight;
-                        const spacing = getRandomInt(80, 250);
-                        card.style.top = `${prevTop + prevHeight + spacing}px`;
-                        cardHArr.push(prevTop + prevHeight + spacing);
+                        const spacing = getRandomInt(50, 150);
+                        card.style.top = `${prevTop +  spacing + prevCardH}px`;
+                        cardHArr.push(prevTop +  spacing + prevCardH);
                     }
+                    cardHArr.push(card.clientHeight);
                 });
-                console.log(cardHArr);
-
-                // main 높이 계산
-                const totalH = Math.max(...cardHArr) + 200; // 마지막 카드 아래 여백
-                document.querySelector("main").style.height = `${totalH}px`;
-            }, 10);
+            },10);
         }
 
-        // 실행
-        document.querySelectorAll(".guide-li-wrap").forEach((ul, ulIndex, ulArray) => {
-            const cardEls = ul.querySelectorAll(".guide-card");
-            const isFirstGroup = ulIndex === 0;
-            const prevGroupCards = !isFirstGroup ? ulArray[ulIndex - 1].querySelectorAll(".guide-card") : null;
+        //스크롤 인디케이터 버튼
+        function scrollIndicator() {
+            indicatorMenu.forEach((btn, i)=>{
+                btn.addEventListener("click", ()=>{
+                    window.scrollTo({
+                        top: firstCardTop[i].top,
+                        behavior: "smooth"
+                    });
+                });
+            });
+        };
 
-            setCardPositions(cardEls, isFirstGroup, prevGroupCards);
+
+        /*실행부*/
+        cardWrap.forEach((ul, ulIndex, ulArray) => {
+            const cardEls = ul.querySelectorAll(".js-guide-card");
+            cardEls.forEach(c => allCards.push(c));
+            const isFirstGroup = ulIndex === 0;
+            const prevGroupCards = !isFirstGroup ? ulArray[ulIndex - 1].querySelectorAll(".js-guide-card") : null;
+            setCardPositions(cardEls, isFirstGroup, prevGroupCards, ulIndex);
         });
 
-        
+        setTimeout(() => {
+            initScrollIndicator();
+            updateMainHeight(allCards);
+            scrollIndicator()
+        }, 30);
+    
+    
+        /*li색상*/
+        allCards.forEach((li, index)=>{
+            if(index%2 != 0){
+                li.querySelector(".title--guide").style.backgroundColor = "#FF5900";
+                li.querySelector(".sample-code").style.boxShadow = " 12px 12px 0 0 #FF5900";
+            }
+        })
     </script>
+
 </body>
 </html>

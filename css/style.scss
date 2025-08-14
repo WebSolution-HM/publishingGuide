@@ -75,7 +75,7 @@ $headerH: calc(70px + 40px + 30px);
 .scroll-indicator{
     @include position($p: fixed, $r: 30px, $t:$headerH);
     z-index: 10;
-    height: calc(100% - $headerH - 30px);
+    height: calc(100% - $headerH - 100px);
     text-align: right;
     .scroll-indicator-wrap{
         @include flex-layout($fd: column, $ai: end, $jc: space-between);
@@ -135,19 +135,20 @@ main{
                     font-size: clamp(16px, 1.3vw, 1.3vw);
                     color: white;
                     text-align: center;
-                    background-color: $primary-orange;
+                    background-color: $primary-blue;
                 }
                 .sample-code{
                     padding: 20px 50px;
                     padding: 2vw;
                     width: 100%;
                     background-color: $black;
-                    box-shadow: 12px 12px 0 0 $primary-orange;
+                    box-shadow: 12px 12px 0 0 $primary-blue;
                     border-radius: 60px;
                     .description{
                         margin-top: 12px;
-                        padding: 0 20px;
+                        padding: 0 4vw;
                         color: white;
+                        line-height: 1.5;
                         li{
                             &:before{
                                 content: "•";
@@ -157,14 +158,14 @@ main{
                 }
                 
                 //홀수번째 파란색 스타일
-                &:nth-child(odd){
-                    .title--guide{
-                        background-color: $primary-blue;
-                    }
-                    .sample-code{
-                        box-shadow: 12px 12px 0 0 $primary-blue;
-                    }
-                }
+                // &:nth-child(odd){
+                //     .title--guide{
+                //         background-color: $primary-blue;
+                //     }
+                //     .sample-code{
+                //         box-shadow: 12px 12px 0 0 $primary-blue;
+                //     }
+                // }
             }
         }
     }
