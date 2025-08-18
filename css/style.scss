@@ -42,28 +42,39 @@ nav{
     color: $primary-orange;
     border-bottom: 1px solid $primary-orange;
     .nav-wrap{
-        @include position($p: relative);
+        // @include position($p: relative);
         @include flex-layout($ai: center, $jc: center);
         height: 100%;
         width: fit-content;
         margin: auto;
 
-        &::after{
-            content: "";
-            @include position($b:-8px, $l:10px);
-            width: calc(100% / 2 - 10px);
-            height: 16px;
-            background-color: $primary-blue;
-            border-radius: 16px;
-        }
+        // &::after{
+        //     content: "";
+        //     @include position($b:-8px, $l:10px);
+        //     width: calc(100% / 2 - 10px);
+        //     height: 16px;
+        //     background-color: $primary-blue;
+        //     border-radius: 16px;
+        // }
         li{
             button{
+                @include position($p: relative);
                 display: block;
                 height: 100%;
                 padding: 0 10px;
+
                 &.active{
                     color: $primary-blue;
                     font-weight:800;
+
+                    &::after{
+                        content: "";
+                        @include position($b:-18px, $l:10px);
+                        width: calc(100% - 20px);
+                        height: 16px;
+                        background-color: $primary-blue;
+                        border-radius: 16px;
+                    }
                 }
             }
         }
@@ -100,11 +111,15 @@ $headerH: calc(70px + 40px + 30px);
             width: 2px;
             margin-top: 10px;
             margin-right: 10px;
-            background-color: $primary-blue;
+            background: linear-gradient(to bottom, #006FFD 0%, #c9c9c9 0%);
             border-radius: 4px;
         }
 
-        .btn--top{}
+        .btn--top{
+            opacity: 0;
+            transition: .3s;
+            transform: translateY(10vh);
+        }
     }
 }
 
@@ -125,8 +140,7 @@ main{
                 @include position();
                 max-width: 700px;
                 width: 100%;
-                // margin-left: auto;
-                // margin-right: auto;
+                opacity: 0;
                 .title--guide{
                     @include position($l:0, $r:0, $t:-1vw);
                     width: fit-content;

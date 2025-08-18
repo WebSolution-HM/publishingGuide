@@ -270,7 +270,6 @@ nav {
   border-bottom: 1px solid #FF5900;
 }
 nav .nav-wrap {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -280,17 +279,8 @@ nav .nav-wrap {
   width: fit-content;
   margin: auto;
 }
-nav .nav-wrap::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 10px;
-  width: calc(50% - 10px);
-  height: 16px;
-  background-color: #006FFD;
-  border-radius: 16px;
-}
 nav .nav-wrap li button {
+  position: relative;
   display: block;
   height: 100%;
   padding: 0 10px;
@@ -298,6 +288,16 @@ nav .nav-wrap li button {
 nav .nav-wrap li button.active {
   color: #006FFD;
   font-weight: 800;
+}
+nav .nav-wrap li button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -18px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 16px;
+  background-color: #006FFD;
+  border-radius: 16px;
 }
 
 .scroll-indicator {
@@ -331,9 +331,15 @@ nav .nav-wrap li button.active {
   width: 2px;
   margin-top: 10px;
   margin-right: 10px;
-  background-color: #006FFD;
+  background: linear-gradient(to bottom, #006FFD 0%, #c9c9c9 0%);
   border-radius: 4px;
 }
+.scroll-indicator .scroll-indicator-wrap .btn--top {
+  opacity: 0;
+  transition: 0.3s;
+  transform: translateY(10vh);
+}
+
 main .main-wrap {
   height: 100%;
   margin-right: 180px;
@@ -347,6 +353,7 @@ main .main-wrap .guide-li-wrap .guide-card {
   position: absolute;
   max-width: 700px;
   width: 100%;
+  opacity: 0;
 }
 main .main-wrap .guide-li-wrap .guide-card .title--guide {
   position: absolute;
