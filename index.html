@@ -43,7 +43,7 @@
                 <li><button class="" type="button">mixin 4종</button></li>
             </ul>
             <div class="indicator--line"></div>
-            <button class="btn--top">
+            <button class="btn--top js-btn--top">
                 <img src="./image/btn--top.svg" alt="맨위로">
             </button>
         </div>
@@ -282,6 +282,16 @@
                 li.querySelector(".title--guide").style.backgroundColor = "#FF5900";
                 li.querySelector(".sample-code").style.boxShadow = " 12px 12px 0 0 #FF5900";
             }
+        });
+
+
+        /*탑버튼*/
+        const topBtn = document.querySelector(".js-btn--top")
+        topBtn.addEventListener("click", ()=>{
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         })
     </script>
 
