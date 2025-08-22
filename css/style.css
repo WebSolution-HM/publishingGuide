@@ -333,6 +333,8 @@ nav .nav-wrap li button.active::after {
   margin-right: 10px;
   background: linear-gradient(to bottom, #006FFD 0%, #c9c9c9 0%);
   border-radius: 4px;
+  opacity: 0;
+  transition: 0.3s;
 }
 .scroll-indicator .scroll-indicator-wrap .btn--top {
   opacity: 0;
@@ -349,11 +351,14 @@ main .main-wrap .guide-li-wrap {
   width: 80%;
   margin-left: auto;
 }
+main .main-wrap .guide-li-wrap:not(:nth-of-type(1)) {
+  margin-top: 25vw;
+}
 main .main-wrap .guide-li-wrap .guide-card {
-  position: absolute;
+  position: relative;
   max-width: 700px;
   width: 100%;
-  opacity: 0;
+  margin-top: 4.4vw;
 }
 main .main-wrap .guide-li-wrap .guide-card .title--guide {
   position: absolute;

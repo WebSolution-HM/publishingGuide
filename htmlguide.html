@@ -5,49 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML 작성 가이드</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/include.js"></script>
 </head>
 <body>
-    <!-- header(헤더) 시작 -->
-    <header class="js-header">
-        <div class="header-wrap">
-            <div class="left">
-                <p>최종 작성자 <br>
-                양미연 연구원</p>
-            </div>
-            <h1 class="title--site">퍼블리싱 작성 가이드</h1>
-            <div class="right">
-                <p>업데이트 날짜 <br>
-                2025년  <br>
-                08월 06일(수)</p>
-            </div>
-        </div>
-    </header>
-    <!-- //header(헤더) 끝 -->
+    <!-- header 시작 -->
+    <header id="header" dataincludes="./header.html"></header>
+    <!-- //header 끝 -->
 
     <!-- nav(네비게이션) 시작 -->
-    <nav class="js-nav">
-        <ul class="nav-wrap">
-            <li><button class="active" type="button">HTML 작성 규칙</button></li>
-            <li><button class="" type="button" onclick="window.location.href='/'">CSS 작성 규칙</button></li>
-        </ul>
-    </nav>
+    <nav class="js-nav" dataincludes="./nav.html"></nav>
     <!-- //nav(네비게이션) 끝 -->
-
+    
     <!-- scroll indicator(스크롤 인디케이터) 시작 -->
-    <aside class="scroll-indicator">
-        <div class="scroll-indicator-wrap">
-            <ul class="indicator--menu js-indicator--menu">
-                <li><button class="active" type="button">클래스명 규칙</button></li>
-            </ul>
-            <div class="indicator--line"></div>
-            <button class="btn--top js-btn--top">
-                <img src="./image/btn--top.svg" alt="맨위로">
-            </button>
-        </div>
-    </aside>
+    <aside class="scroll-indicator" dataincludes="./aside.html"></aside>
     <!-- //scroll indicator(스크롤 인디케이터) 끝 -->
-
-
+     
     <!-- main(메인) 시작 -->
     <main class="js-main">
         <div class="main-wrap">
@@ -69,216 +41,5 @@
         </div>
     </main>
     <!-- //main(메인) 끝 -->
-
-    <script>
-        /*공통변수 모음*/
-        const cardWrap = document.querySelectorAll(".js-guide-li-wrap");
-        const allCards = [];
-        const cardHArr = [];
-        const firstCardTop = [];
-        const indicatorMenu = document.querySelectorAll(".js-indicator--menu button");
-        const topBtn = document.querySelector(".js-btn--top")
-        const indicatorLine = document.querySelector(".indicator--line");
-
-
-        /*함수 모음*/
-        //랜덤숫자(최소, 최대)
-        function getRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        };
-
-        //이전 ul 그룹의 높이 값
-        function prevH(prevGroupCards) {
-            const cardLast = prevGroupCards[prevGroupCards.length - 1];
-            return cardLast.clientHeight + parseFloat(getComputedStyle(cardLast).top) + 300;
-        }
-
-        //scroll indicator(스크롤 인디케이터) 영역
-        function initScrollIndicator() {
-            firstCardTop.sort((a, b) => a.top - b.top);
-            window.addEventListener("scroll", () => {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight;
-                const scrollable = documentHeight - windowHeight;
-                const progress = scrollTop / scrollable;
-                const percent = Math.min(Math.max(progress * 100, 0), 100);
-
-                //인디케이터 라인
-                updateIndicatorLine();
-                // if(!scrollable>0){percent=0}
-                // else {
-                // indicatorLine.style.background = `linear-gradient(
-                //     to bottom, 
-                //     #006FFD ${percent}%, 
-                //     #c9c9c9 ${percent}%
-                // )`;
-                    
-                // }
-
-                //인디케이터 메뉴
-                indicatorMenu.forEach(btn => btn.classList.remove("active"));
-
-                for (let i = 0; i < firstCardTop.length - 1; i++) {
-                    if (scrollTop >= firstCardTop[i].top && scrollTop < firstCardTop[i + 1].top) {
-                        indicatorMenu[firstCardTop[i].index].classList.add("active");
-                    }
-                }
-                
-                if (scrollTop+ windowHeight >= documentHeight) {
-                    indicatorMenu.forEach(btn => btn.classList.remove("active"));
-                    indicatorMenu[indicatorMenu.length-1].classList.add("active");
-                } else {
-                    return;
-                }
-            });
-        }
-
-        //인디케이터 라인
-        function updateIndicatorLine() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollable = documentHeight - windowHeight;
-            const progress = scrollTop / scrollable;
-            let percent = Math.min(Math.max(progress * 100, 0), 100);
-
-            if(!scrollable>0){
-                percent=100;
-            }else {
-                percent = Math.min(Math.max(progress * 100, 0), 100);  
-            }
-            
-            indicatorLine.style.background = `linear-gradient(
-                to bottom, 
-                #006FFD ${percent}%, 
-                #c9c9c9 ${percent}%
-            )`;
-        }
-
-        //메인 높이 값
-        function updateMainHeight(allCards) {
-            let maxBottom = 0;
-            allCards.forEach(card => {
-                const top = parseFloat(card.style.top) || card.offsetTop || 0;
-                const bottom = top + card.offsetHeight;
-                if (bottom > maxBottom) maxBottom = bottom;
-            });
-            document.querySelector("main").style.height = `${maxBottom + 100}px`; // 여유 100px
-        }
-
-        //카드들의 포지션 설정
-        //firstCardTop 배열 설정
-        function setCardPositions(cardEls, isFirstGroup, prevGroupCards, ulIndex) {
-            //left 값
-            cardEls.forEach(card => {
-                const randomL = getRandomInt(5, 30);
-                card.style.left = `${randomL}vw`;
-            });
-
-            //top 값 
-            setTimeout(() => {
-                cardEls.forEach((card, index) => {
-                    const prevCardH = card.previousElementSibling ? card.previousElementSibling.clientHeight : 0;
-                    if (index === 0) { 
-                        if (isFirstGroup) { //첫 ui
-                            //첫 번째 카드
-                            const randomT = getRandomInt(50, 100);
-                            card.style.top = `${randomT}px`;
-                            cardHArr.push(randomT);
-                        
-                        } else { //첫 ui 이후
-                            //첫 번째 카드
-                            const randomT = getRandomInt(10, 50);
-                            const h = prevH(prevGroupCards);
-                            card.style.top = `${randomT + h + prevCardH}px`;
-                            cardHArr.push(randomT + prevCardH);
-                        }
-
-                        //배열 설정
-                        firstCardTop.push({
-                            index: ulIndex,
-                            top: parseFloat(card.style.top) - 200 || card.offsetTop - 200
-                        });
-                    } else {
-                        // 이전 카드 기준으로 top 계산
-                        const prevCard = cardEls[index - 1];
-                        const prevTop = parseFloat(prevCard.style.top);
-                        const spacing = getRandomInt(50, 150);
-                        card.style.top = `${prevTop +  spacing + prevCardH}px`;
-                        cardHArr.push(prevTop +  spacing + prevCardH);
-                    }
-                    cardHArr.push(card.clientHeight);
-                    card.style.opacity = 1;
-                });
-            },10);
-        }
-
-        //스크롤 인디케이터 버튼
-        function scrollIndicator() {
-            indicatorMenu.forEach((btn, i)=>{
-                btn.addEventListener("click", ()=>{
-                    window.scrollTo({
-                        top: firstCardTop[i].top,
-                        behavior: "smooth"
-                    });
-                });
-            });
-        };
-
-
-        /*실행부*/
-        cardWrap.forEach((ul, ulIndex, ulArray) => {
-            const cardEls = ul.querySelectorAll(".js-guide-card");
-            cardEls.forEach(c => allCards.push(c));
-            cardEls.forEach(c => c.style.opacity = 1);
-            const isFirstGroup = ulIndex === 0;
-            const prevGroupCards = !isFirstGroup ? ulArray[ulIndex - 1].querySelectorAll(".js-guide-card") : null;
-            setCardPositions(cardEls, isFirstGroup, prevGroupCards, ulIndex);
-        });
-
-        setTimeout(() => {
-            initScrollIndicator();
-            updateMainHeight(allCards);
-            scrollIndicator()
-            updateIndicatorLine();
-
-        }, 30);
-    
-    
-        /*li색상*/
-        allCards.forEach((li, index)=>{
-            if(index%2 != 0){
-                li.querySelector(".title--guide").style.backgroundColor = "#FF5900";
-                li.querySelector(".sample-code").style.boxShadow = " 12px 12px 0 0 #FF5900";
-            }
-        });
-
-
-        /*탑버튼*/
-        topBtn.addEventListener("click", ()=>{
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        })
-        
-        /*스크롤이 브라우저를 넘어가기 시작한 경우*/
-        // top 버튼 나타나기
-        window.addEventListener("scroll", () => {
-            const scrollTop = window.scrollY;        // 현재 스크롤된 값
-            const viewportHeight = window.innerHeight; // 브라우저 높이
-
-            if (scrollTop > viewportHeight) {
-                topBtn.style.opacity = 1;
-                topBtn.style.transform = "translateY(0)";
-            } else {
-                topBtn.style.opacity = 0;
-                topBtn.style.transform = "translateY(10vh)";
-            }
-        });
-
-    </script>
-
 </body>
 </html>

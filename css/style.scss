@@ -113,6 +113,8 @@ $headerH: calc(70px + 40px + 30px);
             margin-right: 10px;
             background: linear-gradient(to bottom, #006FFD 0%, #c9c9c9 0%);
             border-radius: 4px;
+            opacity: 0;
+            transition: .3s;
         }
 
         .btn--top{
@@ -136,11 +138,15 @@ main{
             // height: 100%;
             margin-left: auto;
 
+            &:not(:nth-of-type(1)){
+                margin-top: calc($px36 * 2.5);
+
+            }
             .guide-card{
-                @include position();
+                @include position($p:relative);
                 max-width: 700px;
                 width: 100%;
-                opacity: 0;
+                margin-top: $px16;
                 .title--guide{
                     @include position($l:0, $r:0, $t:-1vw);
                     width: fit-content;
