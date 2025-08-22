@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /*공통변수 모음*/
     const cardWrap = document.querySelectorAll(".js-guide-li-wrap");
     const allCards = [];
-    const cardHArr = [];
     const firstCardTop = [];
     const indicatorMenu = document.querySelectorAll(".js-indicator--menu button");
     const topBtn = document.querySelector(".js-btn--top")
@@ -32,13 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardEls = document.querySelectorAll(".js-guide-card");
     const ulEls = document.querySelectorAll(".js-guide-li-wrap");
 
+
+
+
     /* 함수 모음 */
     //랜덤숫자(최소, 최대)
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-    function setCardPositions(cardEls, isFirstGroup, prevGroupCards, ulIndex) {
+    function setCardPositions(cardEls) {
       //left 값
       cardEls.forEach(card => {
         const randomL = getRandomInt(5, 30);
@@ -122,10 +124,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
 
+
     /*실행부*/
     setFirstCardTop();
     setCardPositions(cardEls);
-    cardWrap.forEach((ul, ulIndex, ulArray) => {
+    cardWrap.forEach((ul) => {
       const cardEls = ul.querySelectorAll(".js-guide-card");
       cardEls.forEach(c => allCards.push(c));
       cardEls.forEach(c => c.style.opacity = 1);
@@ -154,23 +157,44 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     /*스크롤이 브라우저를 넘어가기 시작한 경우*/
-    // top 버튼 나타나기
+    //인디케이터 나타나기
+    //top 버튼 나타나기
     window.addEventListener("scroll", () => {
-      const scrollTop = window.scrollY;        // 현재 스크롤된 값
-      const viewportHeight = window.innerHeight; // 브라우저 높이
+      const scrollTop = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      //인디케이터 나타나기
       if(scrollTop <= 0){
         indicatorLine.style.opacity = 0;
       }else {
         indicatorLine.style.opacity = 1;
       }
 
+      //top 버튼 나타나기
       if (scrollTop > viewportHeight) {
-          topBtn.style.opacity = 1;
-          topBtn.style.transform = "translateY(0)";
+        topBtn.style.opacity = 1;
+        topBtn.style.transform = "translateY(0)";
       } else {
-          topBtn.style.opacity = 0;
-          topBtn.style.transform = "translateY(10vh)";
+        topBtn.style.opacity = 0;
+        topBtn.style.transform = "translateY(10vh)";
       }
     });
+
+    const navBtn = document.querySelectorAll(".nav-wrap li button");
+    const pageName = window.location.pathname.split("/").pop().split(".")[0];
+    switch (pageName) {
+      case "htmlguide":
+        navBtn[1].classList.add("active");
+      break;
+      case "cssguide":
+        navBtn[2].classList.add("active");
+      break;
+      default:
+        navBtn[0].classList.add("active");
+      break;
+    }
+
+
+
   });
 });

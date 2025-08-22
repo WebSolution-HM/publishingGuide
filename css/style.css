@@ -342,6 +342,9 @@ nav .nav-wrap li button.active::after {
   transform: translateY(10vh);
 }
 
+main {
+  padding: 3.3vw 0;
+}
 main .main-wrap {
   height: 100%;
   margin-right: 180px;

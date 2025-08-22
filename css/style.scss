@@ -127,6 +127,7 @@ $headerH: calc(70px + 40px + 30px);
 
 //main(메인)
 main{
+    padding: $px12 0;
     .main-wrap{
         // width: calc(100% - 250px);
         height: 100%;
