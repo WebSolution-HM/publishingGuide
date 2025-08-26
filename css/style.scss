@@ -11,6 +11,17 @@
 #탑버튼
 #main(메인)
 */
+body{
+    @include position($p:relative);
+    background: url("../image/bg1.svg") no-repeat top center / cover;
+    &::after{
+        content:'';
+        @include position($b:0, $r:0);
+        width: 15vw;
+        aspect-ratio: 1 / 1;
+        background: url("../image/bg3.svg") no-repeat bottom right / contain;
+    }
+}
 
 //header(헤더)
 header{
@@ -42,20 +53,11 @@ nav{
     color: $primary-orange;
     border-bottom: 1px solid $primary-orange;
     .nav-wrap{
-        // @include position($p: relative);
         @include flex-layout($ai: center, $jc: center);
         height: 100%;
         width: fit-content;
         margin: auto;
 
-        // &::after{
-        //     content: "";
-        //     @include position($b:-8px, $l:10px);
-        //     width: calc(100% / 2 - 10px);
-        //     height: 16px;
-        //     background-color: $primary-blue;
-        //     border-radius: 16px;
-        // }
         li{
             button{
                 @include position($p: relative);
@@ -141,13 +143,25 @@ main{
 
             &:not(:nth-of-type(1)){
                 margin-top: calc($px36 * 2.5);
+            }
 
+            &:first-child{
+                .guide-card:first-child{
+                    @include position($p:relative);
+                    &::after{
+                        content: '';
+                        @include position($b:-3vw,$r:-4.5vw);
+                        width: 10vw;
+                        aspect-ratio: 1 / 1;
+                        background: url(../image/bg2.svg) no-repeat center / contain;
+                    }
+                }
             }
             .guide-card{
-                @include position($p:relative);
                 max-width: 700px;
                 width: 100%;
                 margin-top: $px16;
+                
                 .title--guide{
                     @include position($l:0, $r:0, $t:-1vw);
                     width: fit-content;

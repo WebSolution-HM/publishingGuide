@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const indicatorLine = document.querySelector(".indicator--line");
     const cardEls = document.querySelectorAll(".js-guide-card");
     const ulEls = document.querySelectorAll(".js-guide-li-wrap");
+    const navBtn = document.querySelectorAll(".nav-wrap li button");
+    const pageName = window.location.pathname.split("/").pop().split(".")[0];
 
 
 
@@ -65,8 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         const scrollable = documentHeight - windowHeight;
-        const progress = scrollTop / scrollable;
-        const percent = Math.min(Math.max(progress * 100, 0), 100);
 
         //인디케이터 라인
         updateIndicatorLine();
@@ -74,16 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
         //인디케이터 메뉴
         indicatorMenu.forEach(btn => btn.classList.remove("active"));
         for (let i = 0; i < firstCardTop.length - 1; i++) {
-            if (scrollTop >= firstCardTop[i].top && scrollTop < firstCardTop[i + 1].top) {
-                indicatorMenu[firstCardTop[i].index].classList.add("active");
-            }
+          if (scrollTop >= firstCardTop[i].top && scrollTop < firstCardTop[i + 1].top) {
+            indicatorMenu[firstCardTop[i].index].classList.add("active");
+          }
         }
         
         if (scrollTop+ windowHeight >= documentHeight) {
-            indicatorMenu.forEach(btn => btn.classList.remove("active"));
-            indicatorMenu[indicatorMenu.length-1].classList.add("active");
+          indicatorMenu.forEach(btn => btn.classList.remove("active"));
+          indicatorMenu[indicatorMenu.length-1].classList.add("active");
         } else {
-            return;
+          return;
         }
       });
     }
@@ -180,8 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    const navBtn = document.querySelectorAll(".nav-wrap li button");
-    const pageName = window.location.pathname.split("/").pop().split(".")[0];
     switch (pageName) {
       case "htmlguide":
         navBtn[1].classList.add("active");
@@ -192,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
       default:
         navBtn[0].classList.add("active");
       break;
-    }
+    };
 
 
 

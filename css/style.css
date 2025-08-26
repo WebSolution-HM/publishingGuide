@@ -237,6 +237,20 @@ iframe:focus {
 #탑버튼
 #main(메인)
 */
+body {
+  position: relative;
+  background: url("../image/bg1.svg") no-repeat top center/cover;
+}
+body::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15vw;
+  aspect-ratio: 1/1;
+  background: url("../image/bg3.svg") no-repeat bottom right/contain;
+}
+
 header {
   height: 70px;
   color: #FF5900;
@@ -357,8 +371,19 @@ main .main-wrap .guide-li-wrap {
 main .main-wrap .guide-li-wrap:not(:nth-of-type(1)) {
   margin-top: 25vw;
 }
-main .main-wrap .guide-li-wrap .guide-card {
+main .main-wrap .guide-li-wrap:first-child .guide-card:first-child {
   position: relative;
+}
+main .main-wrap .guide-li-wrap:first-child .guide-card:first-child::after {
+  content: "";
+  position: absolute;
+  bottom: -3vw;
+  right: -4.5vw;
+  width: 10vw;
+  aspect-ratio: 1/1;
+  background: url(../image/bg2.svg) no-repeat center/contain;
+}
+main .main-wrap .guide-li-wrap .guide-card {
   max-width: 700px;
   width: 100%;
   margin-top: 4.4vw;
