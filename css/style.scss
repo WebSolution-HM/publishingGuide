@@ -101,8 +101,9 @@ $headerH: calc(70px + 40px + 30px);
                     &.active{
                         font-size: 24px;
                         font-weight: 600;
-                        color: $ivory;
                         background-color: $primary-blue;
+                        // color: $primary-blue;
+                        color: $ivory;
                     }
                 }
             }

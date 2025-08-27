@@ -123,7 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
 
-
     /*실행부*/
     setFirstCardTop();
     setCardPositions(cardEls);

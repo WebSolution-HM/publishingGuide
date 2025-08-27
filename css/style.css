@@ -334,8 +334,8 @@ nav .nav-wrap li button.active::after {
 .scroll-indicator .scroll-indicator-wrap .indicator--menu li button.active {
   font-size: 24px;
   font-weight: 600;
-  color: #FFFBED;
   background-color: #006FFD;
+  color: #FFFBED;
 }
 .scroll-indicator .scroll-indicator-wrap .indicator--line {
   flex: 0.95;
