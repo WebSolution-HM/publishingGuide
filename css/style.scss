@@ -12,37 +12,37 @@
 #main(메인)
 */
 body{
-    @include position($p:relative);
     background: url("../image/bg1.svg") no-repeat top center / cover;
-    &::after{
-        content:'';
-        @include position($b:0, $r:0);
+    .bg3{
+        @include position($r: 0);
         width: 15vw;
         aspect-ratio: 1 / 1;
-        background: url("../image/bg3.svg") no-repeat bottom right / contain;
+        background: url("../image/bg3.svg") no-repeat top center / cover;
     }
 }
 
 //header(헤더)
 header{
-    height: 70px;
-    color: $primary-orange;
-    .header-wrap{
-        @include flex-layout($jc: space-between, $ai: center);
-        height: 100%;
-        padding: 30px;
-        font-size: 14px;
-        border-bottom: 1px solid $primary-orange;
-        .left{
-            text-align: left;
-        }
-        .title--site{
-            font-family: "LOTTERIACHAB";
-            font-weight: 400;
-            font-size: 40px;
-        }
-        .right{
-            text-align: right;
+    .header-inner{
+        height: 70px;
+        color: $primary-orange;
+        .header-wrap{
+            @include flex-layout($jc: space-between, $ai: center);
+            height: 100%;
+            padding: 30px;
+            font-size: 14px;
+            border-bottom: 1px solid $primary-orange;
+            .left{
+                text-align: left;
+            }
+            .title--site{
+                font-family: "LOTTERIACHAB";
+                font-weight: 400;
+                font-size: 40px;
+            }
+            .right{
+                text-align: right;
+            }
         }
     }
 }
@@ -134,7 +134,21 @@ main{
         // width: calc(100% - 250px);
         height: 100%;
         margin-right: 180px;
-        // padding: 50px 0;
+        
+        .card-title{
+            @include position($p:relative, $l:0, $r:0, $t:clamp(80px, 8vw, 3.5vw));
+            z-index: -1;
+
+            font-family: "LOTTERIACHAB";
+            font-size: clamp(80px, 8vw, 3.5vw);
+            color: $primary-blue;
+            line-height: 1;
+            text-align: center;
+            h2{
+                font-weight: 400;
+            }
+        }
+        
         .guide-li-wrap{
             @include position($p:relative);
             width: 80%;
@@ -142,7 +156,7 @@ main{
             margin-left: auto;
 
             &:not(:nth-of-type(1)){
-                margin-top: calc($px36 * 2.5);
+                margin-top: calc($px36 * 3);
             }
 
             &:first-child{
@@ -158,16 +172,17 @@ main{
                 }
             }
             .guide-card{
+                @include position($p:relative);
                 max-width: 700px;
                 width: 100%;
-                margin-top: $px16;
+                margin-top: $px24;
                 
                 .title--guide{
-                    @include position($l:0, $r:0, $t:-1vw);
+                    @include position($l:0, $r:0, $t:clamp(-30px, -2.5vw, -2.5vw));
                     width: fit-content;
                     margin: auto;
                     padding: 4px 8px;
-                    font-size: clamp(16px, 1.3vw, 1.3vw);
+                    font-size: clamp(18px, 3vw, 36px);
                     color: white;
                     text-align: center;
                     background-color: $primary-blue;

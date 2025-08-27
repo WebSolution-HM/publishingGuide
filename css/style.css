@@ -238,24 +238,21 @@ iframe:focus {
 #main(메인)
 */
 body {
-  position: relative;
   background: url("../image/bg1.svg") no-repeat top center/cover;
 }
-body::after {
-  content: "";
+body .bg3 {
   position: absolute;
-  bottom: 0;
   right: 0;
   width: 15vw;
   aspect-ratio: 1/1;
-  background: url("../image/bg3.svg") no-repeat bottom right/contain;
+  background: url("../image/bg3.svg") no-repeat top center/cover;
 }
 
-header {
+header .header-inner {
   height: 70px;
   color: #FF5900;
 }
-header .header-wrap {
+header .header-inner .header-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -266,15 +263,15 @@ header .header-wrap {
   font-size: 14px;
   border-bottom: 1px solid #FF5900;
 }
-header .header-wrap .left {
+header .header-inner .header-wrap .left {
   text-align: left;
 }
-header .header-wrap .title--site {
+header .header-inner .header-wrap .title--site {
   font-family: "LOTTERIACHAB";
   font-weight: 400;
   font-size: 40px;
 }
-header .header-wrap .right {
+header .header-inner .header-wrap .right {
   text-align: right;
 }
 
@@ -363,13 +360,28 @@ main .main-wrap {
   height: 100%;
   margin-right: 180px;
 }
+main .main-wrap .card-title {
+  position: relative;
+  top: clamp(80px, 8vw, 3.5vw);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  font-family: "LOTTERIACHAB";
+  font-size: clamp(80px, 8vw, 3.5vw);
+  color: #006FFD;
+  line-height: 1;
+  text-align: center;
+}
+main .main-wrap .card-title h2 {
+  font-weight: 400;
+}
 main .main-wrap .guide-li-wrap {
   position: relative;
   width: 80%;
   margin-left: auto;
 }
 main .main-wrap .guide-li-wrap:not(:nth-of-type(1)) {
-  margin-top: 25vw;
+  margin-top: 30vw;
 }
 main .main-wrap .guide-li-wrap:first-child .guide-card:first-child {
   position: relative;
@@ -384,19 +396,20 @@ main .main-wrap .guide-li-wrap:first-child .guide-card:first-child::after {
   background: url(../image/bg2.svg) no-repeat center/contain;
 }
 main .main-wrap .guide-li-wrap .guide-card {
+  position: relative;
   max-width: 700px;
   width: 100%;
-  margin-top: 4.4vw;
+  margin-top: 6.7vw;
 }
 main .main-wrap .guide-li-wrap .guide-card .title--guide {
   position: absolute;
-  top: -1vw;
+  top: clamp(-30px, -2.5vw, -2.5vw);
   left: 0;
   right: 0;
   width: fit-content;
   margin: auto;
   padding: 4px 8px;
-  font-size: clamp(16px, 1.3vw, 1.3vw);
+  font-size: clamp(18px, 3vw, 36px);
   color: white;
   text-align: center;
   background-color: #006FFD;

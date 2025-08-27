@@ -22,8 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
   */
   Promise.all(fetches).then(() => {
     /*공통변수 모음*/
-    const cardWrap = document.querySelectorAll(".js-guide-li-wrap");
+    // const cardWrap = document.querySelectorAll(".js-guide-li-wrap");
     const allCards = [];
+    const liEls = document.querySelectorAll(".js-guide-li-wrap > li");
     const firstCardTop = [];
     const indicatorMenu = document.querySelectorAll(".js-indicator--menu button");
     const topBtn = document.querySelector(".js-btn--top")
@@ -32,8 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const ulEls = document.querySelectorAll(".js-guide-li-wrap");
     const navBtn = document.querySelectorAll(".nav-wrap li button");
     const pageName = window.location.pathname.split("/").pop().split(".")[0];
-
-
 
 
     /* 함수 모음 */
@@ -55,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ulEls.forEach((ul, index) => {
         firstCardTop.push({
             index: index,
-            top: parseFloat(ul.style.top)-250 || ul.offsetTop-250
+            top: parseFloat(ul.style.top)-200 || ul.offsetTop-200
         });
       });
     };
@@ -128,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /*실행부*/
     setFirstCardTop();
     setCardPositions(cardEls);
-    cardWrap.forEach((ul) => {
+    ulEls.forEach((ul) => {
       const cardEls = ul.querySelectorAll(".js-guide-card");
       cardEls.forEach(c => allCards.push(c));
       cardEls.forEach(c => c.style.opacity = 1);
@@ -141,10 +140,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 30);
 
     /*li색상*/
-    allCards.forEach((li, index)=>{
+    liEls.forEach((li, index)=>{
       if(index%2 != 0){
-        li.querySelector(".title--guide").style.backgroundColor = "#FF5900";
-        li.querySelector(".sample-code").style.boxShadow = " 12px 12px 0 0 #FF5900";
+        if(li.classList.contains("card-title")){
+          li.style.color="#FF5900";
+        }else{
+          li.querySelector(".title--guide").style.backgroundColor = "#FF5900";
+          li.querySelector(".sample-code").style.boxShadow = " 12px 12px 0 0 #FF5900";
+        }
       }
     });
 
@@ -161,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //top 버튼 나타나기
     window.addEventListener("scroll", () => {
       const scrollTop = window.scrollY;
-      const viewportHeight = window.innerHeight;
 
       //인디케이터 나타나기
       if(scrollTop <= 0){
@@ -171,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       //top 버튼 나타나기
-      if (scrollTop > viewportHeight) {
+      if (scrollTop > 0) {
         topBtn.style.opacity = 1;
         topBtn.style.transform = "translateY(0)";
       } else {
@@ -193,6 +195,26 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
+    //배경에 그림 하나 추가
+    let winHeight = window.innerHeight;
+    let docHeight = document.documentElement.scrollHeight;
+    let height = Math.max(docHeight, winHeight);
+    const bg3 = document.createElement("span");
+    bg3.classList.add("bg3");
+    
+    function bg3Position (height) {
+      document.querySelector("body").appendChild(bg3);
+      bg3.style.top = (height - bg3.offsetHeight) + "px";
+    };
+    bg3Position(height);
+
+    window.addEventListener("resize", ()=>{
+      bg3?.remove();
+      winHeight = window.innerHeight;
+      docHeight = document.documentElement.scrollHeight;
+      height = Math.max(docHeight, winHeight);
+      bg3Position(height);
+    });
 
   });
 });
