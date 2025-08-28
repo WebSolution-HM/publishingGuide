@@ -135,7 +135,18 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       initScrollIndicator();
       scrollIndicator()
-      updateIndicatorLine();
+
+      if(pageName != ""){
+        updateIndicatorLine();
+
+        /*탑버튼*/
+        topBtn.addEventListener("click", ()=>{
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        })
+      }
     }, 30);
 
     /*li색상*/
@@ -149,14 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
-
-    /*탑버튼*/
-    topBtn.addEventListener("click", ()=>{
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    })
 
     /*스크롤이 브라우저를 넘어가기 시작한 경우*/
     //인디케이터 나타나기
