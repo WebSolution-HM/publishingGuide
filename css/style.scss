@@ -243,3 +243,39 @@ main{
         max-width: 90%;
     }
 }
+
+main{
+    .guide-links{
+        @include flex-layout($fd:column,$ai:center, $jc:center);
+        li{
+            // -webkit-mask: url("../image/icon--badge.svg") no-repeat center / contain;
+            // mask: url("../image/icon--badge.svg") no-repeat center / 110%;
+            transform: rotateZ(-15deg);
+            transition: .3s;
+
+            a{
+                display: block; 
+                padding: 80px;
+                background-color: $primary-blue;
+                
+                color: $ivory;
+                font-weight: 800;
+                -webkit-mask: url("../image/icon--badge.svg") no-repeat center / contain;
+                mask: url("../image/icon--badge.svg") no-repeat center / 100%;
+                // transform: rotateZ(-15deg);
+            }
+
+            &:nth-of-type(2n){
+                // mask-image: url("../image/icon--badge2.svg");
+                a{
+                    mask-image: url("../image/icon--badge2.svg");
+                }
+            }
+
+            &:hover{
+                transform: rotateZ(11deg);
+            filter: drop-shadow(8px 8px 38px #ffaa7c);
+            }
+        }
+    }
+}

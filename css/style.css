@@ -452,4 +452,31 @@ main .main-wrap .guide-li-wrap .guide-card .sample-code .description li:before {
   main .main-wrap .guide-li-wrap .guide-card {
     max-width: 90%;
   }
+}
+main .guide-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+main .guide-links li {
+  transform: rotateZ(-15deg);
+  transition: 0.3s;
+}
+main .guide-links li a {
+  display: block;
+  padding: 80px;
+  background-color: #006FFD;
+  color: #FFFBED;
+  font-weight: 800;
+  -webkit-mask: url("../image/icon--badge.svg") no-repeat center/contain;
+  mask: url("../image/icon--badge.svg") no-repeat center/100%;
+}
+main .guide-links li:nth-of-type(2n) a {
+  mask-image: url("../image/icon--badge2.svg");
+}
+main .guide-links li:hover {
+  transform: rotateZ(11deg);
+  filter: drop-shadow(8px 8px 38px #ffaa7c);
 }/*# sourceMappingURL=style.css.map */
