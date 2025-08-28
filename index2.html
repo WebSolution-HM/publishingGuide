@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>header-action 버튼 스타일 규칙</title>
+        <style>
+            body {
+                font-family: Pretendard, sans-serif;
+                line-height: 1.6;
+                max-width: 900px;
+                margin: 40px auto;
+                padding: 0 20px;
+                background: #f9f9f9;
+                color: #222;
+            }
+            h1,
+            h2,
+            h3 {
+                color: #333;
+            }
+            code {
+                background: #f4f4f4;
+                padding: 2px 4px;
+                border-radius: 4px;
+                font-family: Consolas, monospace;
+            }
+            pre {
+                background: #272822;
+                color: #f8f8f2;
+                padding: 16px;
+                border-radius: 6px;
+                overflow-x: auto;
+            }
+            pre code {
+                background: none;
+                color: inherit;
+                padding: 0;
+            }
+            section {
+                background: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 24px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            }
+            ul {
+                margin-top: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="/">⬅ 돌아가기</a>
+        </header>
+        <section>
+            <h1>🎯 <code>Publishing</code> 작성 가이드</h1>
+
+            <h2>1. 목적</h2>
+            <p><strong>일관된 형식</strong>으로 작성하여 유지보수를 간단하게 하기 위함.</p>
+
+            <h2>2. 클래스 네이밍 규칙</h2>
+            <ul>
+                <li>캐밥 스타일</li>
+                <li><strong>BEM 방식 + 하이픈 표기</strong> <code>header-action--mail</code>, <code>header-action--logout</code></li>
+                <li><strong>공통 스타일</strong>은 일반적인 선택자 혹은<code>:is([class^="name--"], [class*=" name--"])</code>선택자로</li>
+            </ul>
+
+            <pre>
+<code class="language-html">&lt;div class="header-actions"&gt;
+  &lt;button class="header-action--mail" type="button" aria-label="메일함 열기"&gt;&lt;/button&gt;
+  &lt;button class="header-action--logout" type="button" aria-label="로그아웃"&gt;&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+            <h2>3. SCSS 구조</h2>
+            <pre>
+              <code class="language-css">
+  .header-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: var(--header-btn-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &:focus {
+      background-color: var(--header-btn-hover-bg);
+    }
+
+    &--mail {
+      background-image: url('/icons/mail.svg');
+    }
+
+    &--logout {
+      background-image: url('/icons/logout.svg');
+    }
+}
+</code></pre>
+
+            <h2>4. 규칙 설명</h2>
+            <ol>
+                <li><strong>기본 클래스 + 모디파이어</strong>를 항상 함께 사용</li>
+                <li>크기, 배경색 등 공통 속성 변경 → <code>header-action</code>만 수정</li>
+                <li>아이콘 교체/추가 → 모디파이어 클래스만 추가</li>
+                <li>네스팅 최대 1단계 유지 (<code>&amp;--modifier</code>)</li>
+                <li>HTML 구조 변경 없이 스타일만으로 UI 유지보수 가능</li>
+            </ol>
+
+            <h2>5. 유지보수 예시</h2>
+            <pre><code class="language-css">/* 전체 버튼 크기 변경 */
+.header-action {
+  width: 40px;
+  height: 40px;
+}
+
+/* 메일 아이콘 변경 */
+.header-action--mail {
+  background-image: url('/icons/mail-new.svg');
+}
+</code></pre>
+
+            <h2>6. 장점</h2>
+            <ul>
+                <li><strong>일관성</strong>: 동일한 구조/크기/패딩 유지</li>
+                <li><strong>확장성</strong>: 모디파이어만 추가하면 새 버튼 즉시 적용</li>
+                <li><strong>유지보수성</strong>: 공통 변경은 한 줄 수정으로 전체 반영</li>
+                <li><strong>가독성</strong>: 클래스 이름만 보고 역할과 기능이 명확</li>
+            </ul>
+        </section>
+    </body>
+</html>
