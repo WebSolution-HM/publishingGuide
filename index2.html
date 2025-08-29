@@ -55,25 +55,60 @@
         <section>
             <h1>🎯 <code>Publishing</code> 작성 가이드</h1>
 
+            <!-- 목적 시작 -->
             <h2>1. 목적</h2>
             <p><strong>일관된 형식</strong>으로 작성하여 유지보수를 간단하게 하기 위함.</p>
+            <!-- //목적 끝 -->
 
+            <!-- 클래스 네이밍 규칙 시작 -->
             <h2>2. 클래스 네이밍 규칙</h2>
             <ul>
                 <li>캐밥 스타일</li>
-                <li><strong>BEM 방식 + 하이픈 표기</strong> <code>header-action--mail</code>, <code>header-action--logout</code></li>
-                <li><strong>공통 스타일</strong>은 일반적인 선택자 혹은<code>:is([class^="name--"], [class*=" name--"])</code>선택자로</li>
-            </ul>
-
-            <pre>
+                <li>
+                    <strong>BEM 방식 + 하이픈 표기</strong>
+                    <div><code>header-action--mail</code>, <code>header-action--logout</code></div>
+                    <small>(*[공통클래스]--[속성/특성] 형태로 작성)</small>
+                </li>
+                <li>
+                    <strong>공통 스타일</strong>은 일반적인 선택자 혹은
+                    <div><code>:is([class^="name--"]</code>, <code>[class*=" name--"])</code> 선택자 사용</div>
+                    <div><small>(*호환성 확인 필요)</small></div>
+                </li>
+                <li style="list-style: none">
+                    <pre>
 <code class="language-html">&lt;div class="header-actions"&gt;
   &lt;button class="header-action--mail" type="button" aria-label="메일함 열기"&gt;&lt;/button&gt;
   &lt;button class="header-action--logout" type="button" aria-label="로그아웃"&gt;&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
+                </li>
+            </ul>
+            <!-- //클래스 네이밍 규칙 끝 -->
 
+            <!-- SCSS 구조 시작 -->
             <h2>3. SCSS 구조</h2>
-            <pre>
+            <ul>
+                <li>작성순서는 <strong>배치 → 레이아웃 → 스타일</strong>관련 순서로 작성</li>
+                <pre>
+<code class="language-css">.header-action{ 
+    //포지션
+    //포지션 관련 속성 
+    //display 
+    //display 관련 속성 
+
+    //가로 
+    //세로 
+    //마진 
+    //패딩 
+
+    //폰트 
+    //폰트 관련 속성 
+    //배경 
+    //그림자 ... 
+}</code></pre>
+                <li>
+                    <code>:hover</code>, <code>:focus</code>등은 최하단에 작성
+                    <pre>
               <code class="language-css">
   .header-action {
     display: inline-flex;
@@ -89,6 +124,11 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
 
+    .title {
+        color: black;
+        font-size: 18px;
+    }
+
     &:hover,
     &:focus {
       background-color: var(--header-btn-hover-bg);
@@ -103,8 +143,10 @@
     }
 }
 </code></pre>
+                </li>
+            </ul>
 
-            <h2>4. 규칙 설명</h2>
+            <!-- <h2>4. 규칙 설명</h2>
             <ol>
                 <li><strong>기본 클래스 + 모디파이어</strong>를 항상 함께 사용</li>
                 <li>크기, 배경색 등 공통 속성 변경 → <code>header-action</code>만 수정</li>
@@ -132,7 +174,7 @@
                 <li><strong>확장성</strong>: 모디파이어만 추가하면 새 버튼 즉시 적용</li>
                 <li><strong>유지보수성</strong>: 공통 변경은 한 줄 수정으로 전체 반영</li>
                 <li><strong>가독성</strong>: 클래스 이름만 보고 역할과 기능이 명확</li>
-            </ul>
+            </ul> -->
         </section>
     </body>
 </html>

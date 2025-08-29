@@ -11,9 +11,9 @@
 #탑버튼
 #main(메인)
 */
-body{
+body {
     background: url("../image/bg1.svg") no-repeat top center / cover;
-    .bg3{
+    .bg3 {
         @include position($r: 0);
         width: 15vw;
         aspect-ratio: 1 / 1;
@@ -22,25 +22,25 @@ body{
 }
 
 //header(헤더)
-header{
-    .header-inner{
+header {
+    .header-inner {
         height: 70px;
         color: $primary-orange;
-        .header-wrap{
+        .header-wrap {
             @include flex-layout($jc: space-between, $ai: center);
             height: 100%;
             padding: 30px;
             font-size: 14px;
             border-bottom: 1px solid $primary-orange;
-            .left{
+            .left {
                 text-align: left;
             }
-            .title--site{
+            .title--site {
                 font-family: "LOTTERIACHAB";
                 font-weight: 400;
                 font-size: 40px;
             }
-            .right{
+            .right {
                 text-align: right;
             }
         }
@@ -48,30 +48,30 @@ header{
 }
 
 //nav(네비게이션)
-nav{
+nav {
     height: 40px;
     color: $primary-orange;
     border-bottom: 1px solid $primary-orange;
-    .nav-wrap{
+    .nav-wrap {
         @include flex-layout($ai: center, $jc: center);
         height: 100%;
         width: fit-content;
         margin: auto;
 
-        li{
-            button{
+        li {
+            button {
                 @include position($p: relative);
                 display: block;
                 height: 100%;
                 padding: 0 10px;
 
-                &.active{
+                &.active {
                     color: $primary-blue;
-                    font-weight:800;
+                    font-weight: 800;
 
-                    &::after{
+                    &::after {
                         content: "";
-                        @include position($b:-18px, $l:10px);
+                        @include position($b: -18px, $l: 10px);
                         width: calc(100% - 20px);
                         height: 16px;
                         background-color: $primary-blue;
@@ -85,20 +85,20 @@ nav{
 
 //scroll indicator(스크롤 인디케이터)
 $headerH: calc(70px + 40px + 30px);
-.scroll-indicator{
-    @include position($p: fixed, $r: 30px, $t:$headerH);
+.scroll-indicator {
+    @include position($p: fixed, $r: 30px, $t: $headerH);
     z-index: 10;
     height: calc(100% - $headerH - 100px);
     text-align: right;
-    .scroll-indicator-wrap{
+    .scroll-indicator-wrap {
         @include flex-layout($fd: column, $ai: end, $jc: space-between);
         height: 100%;
-        .indicator--menu{
-            li{
-                button{
+        .indicator--menu {
+            li {
+                button {
                     padding: 6px 14px;
                     border-radius: 40px;
-                    &.active{
+                    &.active {
                         font-size: 24px;
                         font-weight: 600;
                         background-color: $primary-blue;
@@ -109,35 +109,35 @@ $headerH: calc(70px + 40px + 30px);
             }
         }
 
-        .indicator--line{
-            flex: .95;
+        .indicator--line {
+            flex: 0.95;
             width: 2px;
             margin-top: 10px;
             margin-right: 10px;
-            background: linear-gradient(to bottom, #006FFD 0%, #c9c9c9 0%);
+            background: linear-gradient(to bottom, #006ffd 0%, #c9c9c9 0%);
             border-radius: 4px;
             opacity: 0;
-            transition: .3s;
+            transition: 0.3s;
         }
 
-        .btn--top{
+        .btn--top {
             opacity: 0;
-            transition: .3s;
+            transition: 0.3s;
             transform: translateY(10vh);
         }
     }
 }
 
 //main(메인)
-main{
+main {
     padding: $px12 0;
-    .main-wrap{
+    .main-wrap {
         // width: calc(100% - 250px);
         height: 100%;
         margin-right: 180px;
-        
-        .card-title{
-            @include position($p:relative, $l:0, $r:0, $t:clamp(80px, 8vw, 3.5vw));
+
+        .card-title {
+            @include position($p: relative, $l: 0, $r: 0, $t: clamp(80px, 8vw, 3.5vw));
             z-index: -1;
 
             font-family: "LOTTERIACHAB";
@@ -145,41 +145,41 @@ main{
             color: $primary-blue;
             line-height: 1;
             text-align: center;
-            h2{
+            h2 {
                 font-weight: 400;
             }
         }
-        
-        .guide-li-wrap{
-            @include position($p:relative);
+
+        .guide-li-wrap {
+            @include position($p: relative);
             width: 80%;
             // height: 100%;
             margin-left: auto;
 
-            &:not(:nth-of-type(1)){
+            &:not(:nth-of-type(1)) {
                 margin-top: calc($px36 * 3);
             }
 
-            &:first-child{
-                .guide-card:first-child{
-                    @include position($p:relative);
-                    &::after{
-                        content: '';
-                        @include position($b:-3vw,$r:-4.5vw);
+            &:first-child {
+                .guide-card:first-child {
+                    @include position($p: relative);
+                    &::after {
+                        content: "";
+                        @include position($b: -3vw, $r: -4.5vw);
                         width: 10vw;
                         aspect-ratio: 1 / 1;
                         background: url(../image/bg2.svg) no-repeat center / contain;
                     }
                 }
             }
-            .guide-card{
-                @include position($p:relative);
+            .guide-card {
+                @include position($p: relative);
                 max-width: 700px;
                 width: 100%;
                 margin-top: $px24;
-                
-                .title--guide{
-                    @include position($l:0, $r:0, $t:clamp(-30px, -2.5vw, -2.5vw));
+
+                .title--guide {
+                    @include position($l: 0, $r: 0, $t: clamp(-30px, -2.5vw, -2.5vw));
                     width: fit-content;
                     margin: auto;
                     padding: 4px 8px;
@@ -188,26 +188,26 @@ main{
                     text-align: center;
                     background-color: $primary-blue;
                 }
-                .sample-code{
+                .sample-code {
                     padding: 20px 50px;
                     padding: 2vw;
                     width: 100%;
                     background-color: $black;
                     box-shadow: 12px 12px 0 0 $primary-blue;
                     border-radius: 60px;
-                    .description{
+                    .description {
                         margin-top: 12px;
                         padding: 0 4vw;
                         color: white;
                         line-height: 1.5;
-                        li{
-                            &:before{
+                        li {
+                            &:before {
                                 content: "•";
                             }
                         }
                     }
                 }
-                
+
                 //홀수번째 파란색 스타일
                 // &:nth-child(odd){
                 //     .title--guide{
@@ -222,59 +222,60 @@ main{
     }
 }
 
-@media (max-width: 1600px){
-    main .main-wrap .guide-li-wrap{
+@media (max-width: 1600px) {
+    main .main-wrap .guide-li-wrap {
         width: 100%;
-        .guide-card{
+        .guide-card {
             max-width: 60%;
         }
     }
 }
-@media (max-width: 1050px){
-    main .main-wrap .guide-li-wrap .guide-card{
+@media (max-width: 1050px) {
+    main .main-wrap .guide-li-wrap .guide-card {
         max-width: 70%;
-        .sample-code{
+        .sample-code {
             border-radius: 40px;
         }
     }
 }
-@media (max-width: 750px){
-    main .main-wrap .guide-li-wrap .guide-card{
+@media (max-width: 750px) {
+    main .main-wrap .guide-li-wrap .guide-card {
         max-width: 90%;
     }
 }
 
-main{
-    .guide-links{
-        @include flex-layout($fd:column,$ai:center, $jc:center);
-        li{
+main {
+    .guide-links {
+        @include flex-layout($fd: column, $ai: center, $jc: center);
+        li {
             // -webkit-mask: url("../image/icon--badge.svg") no-repeat center / contain;
             // mask: url("../image/icon--badge.svg") no-repeat center / 110%;
             transform: rotateZ(-15deg);
-            transition: .3s;
+            transition: 0.3s;
 
-            a{
-                display: block; 
-                padding: 80px;
+            a {
+                display: block;
+                padding: 7.2vh;
                 background-color: $primary-blue;
-                
+
                 color: $ivory;
                 font-weight: 800;
+                font-size: 1.8vh;
                 -webkit-mask: url("../image/icon--badge.svg") no-repeat center / contain;
                 mask: url("../image/icon--badge.svg") no-repeat center / 100%;
                 // transform: rotateZ(-15deg);
             }
 
-            &:nth-of-type(2n){
+            &:nth-of-type(2n) {
                 // mask-image: url("../image/icon--badge2.svg");
-                a{
+                a {
                     mask-image: url("../image/icon--badge2.svg");
                 }
             }
 
-            &:hover{
+            &:hover {
                 transform: rotateZ(11deg);
-            filter: drop-shadow(8px 8px 38px #ffaa7c);
+                filter: drop-shadow(8px 8px 38px #ffaa7c);
             }
         }
     }
